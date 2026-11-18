@@ -1,0 +1,153 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0 20px 48px;
+  font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #22262e; background: #f6f7f9;
+}
+.wrap { max-width: 1120px; margin: 0 auto; }
+header.top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; padding: 20px 0 14px;
+  border-bottom: 1px solid #e3e6ea; margin-bottom: 22px;
+}
+header.top h1 { font-size: 18px; font-weight: 600; margin: 0; }
+nav a { color: #185fa5; text-decoration: none; margin-left: 18px; }
+nav a:hover { text-decoration: underline; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 12px; }
+.muted { color: #737a85; }
+code { font-family: Consolas, Monaco, monospace; font-size: 12px; background: #eef0f3; padding: 1px 5px; border-radius: 4px; }
+
+.cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.card {
+  flex: 1 1 180px; min-width: 160px; background: #fff;
+  border: 1px solid #e3e6ea; border-radius: 10px; padding: 16px 18px;
+}
+.card .label { color: #737a85; font-size: 12px; }
+.card .value { font-size: 26px; font-weight: 600; margin-top: 4px; }
+
+.panel { background: #fff; border: 1px solid #e3e6ea; border-radius: 10px; padding: 6px 18px 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #eef0f3; vertical-align: middle; }
+th { color: #737a85; font-weight: 500; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.bar { height: 9px; background: #cfe2f6; border-radius: 5px; min-width: 3px; display: inline-block; vertical-align: middle; }
+.bar-uv { background: #a9ddc9; }
+.num { text-align: right; white-space: nowrap; }
+.ellipsis { max-width: 420px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+form.filters { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+label { display: block; font-size: 12px; color: #737a85; margin-bottom: 4px; }
+input[type=text], input[type=date], input[type=password], select {
+  font: inherit; padding: 7px 10px; border: 1px solid #d5d9df;
+  border-radius: 7px; background: #fff; color: #22262e; min-width: 150px;
+}
+button, .btn {
+  font: inherit; padding: 7px 16px; border: 1px solid #185fa5;
+  border-radius: 7px; background: #185fa5; color: #fff;
+  cursor: pointer; text-decoration: none; display: inline-block;
+}
+button.ghost, .btn.ghost { background: #fff; color: #185fa5; }
+button.danger { background: #fff; color: #a32d2d; border-color: #d9b1b1; }
+button.sm, .btn.sm { padding: 4px 10px; font-size: 12px; }
+.notice { background: #eef6fc; border: 1px solid #cfe2f6; padding: 10px 14px; border-radius: 8px; }
+.notice.warn-notice { background: #fff8e8; border-color: #f0d9a5; margin: 0 0 14px; line-height: 1.7; }
+.notice.warn-notice a { margin-left: 6px; white-space: nowrap; }
+.error { background: #fdf0f0; border: 1px solid #f2cccc; color: #a32d2d; padding: 10px 14px; border-radius: 8px; }
+pre.code {
+  background: #f6f8fa; border: 1px solid #e3e6ea; border-radius: 8px;
+  padding: 10px 12px; overflow-x: auto; font: 12px/1.6 Consolas, Monaco, monospace;
+  white-space: pre-wrap; word-break: break-all;
+}
+.tag { display: inline-block; padding: 1px 8px; border-radius: 12px; font-size: 12px; }
+.tag.on { background: #e3f4ec; color: #0f6e56; }
+.tag.off { background: #f1efec; color: #777; }
+
+.login-body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.login-card { width: 380px; background: #fff; border: 1px solid #e3e6ea; border-radius: 12px; padding: 28px; }
+.login-card h1 { font-size: 18px; margin: 0 0 4px; }
+.login-card input { width: 100%; margin-bottom: 14px; }
+.login-card button { width: 100%; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid2 .panel { margin: 0; }
+.panel h3 { font-size: 13px; font-weight: 600; margin: 18px 0 6px; color: #4a505b; }
+.panel h3:first-child { margin-top: 12px; }
+
+/* ---------- 图表：服务端 SVG，零外部依赖 ---------- */
+.h2-note { font-size: 12px; font-weight: 400; color: #8a919c; margin-left: 8px; }
+.chart-panel { padding-top: 16px; }
+.chart-grid { margin-bottom: 16px; }
+.trend-summary { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: #8a919c; margin: 0 0 10px 2px; }
+.trend-summary b { color: #22262e; font-weight: 600; margin-left: 3px; }
+
+/* ECharts 主渲染 + 服务端 SVG 兜底：只有初始化成功才切换 */
+.chart-slot { position: relative; width: 100%; }
+.ec-box { display: none; width: 100%; }
+.chart-slot.ec-ready .ec-box { display: block; }
+.chart-slot.ec-ready .ec-fallback { display: none; }
+.chart-box { width: 100%; }
+.chart-head {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px; padding: 0 0 6px;
+}
+.chart-legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: #4a505b; }
+.lg { display: inline-flex; align-items: center; }
+.lg i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; margin-right: 6px; }
+.chart-summary { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: #8a919c; }
+.chart-summary b { color: #22262e; font-weight: 600; margin-left: 3px; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.cg { stroke: #e9edf2; stroke-width: 1; }
+.ca { fill: #8a919c; font-size: 11px; }
+.cl { stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.cl-dot { stroke: #fff; stroke-width: 1.4; }
+.chit { cursor: crosshair; }
+.chit:hover { fill: rgba(47, 111, 208, .05); }
+.cb-bar { transition: opacity .15s ease; }
+.cb-g:hover .cb-bar { opacity: .72; }
+.cb-val { fill: #4a505b; font-size: 11px; font-weight: 600; }
+.chart-foot { margin: 2px 0 0; font-size: 12px; color: #8a919c; line-height: 1.5; }
+
+/* KPI 卡片：迷你趋势线 + 环比 */
+.card-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.spark { width: 110px; max-width: 40%; height: 36px; display: block; flex: 0 0 auto; }
+.card-meta { margin-top: 8px; font-size: 12px; color: #8a919c; }
+.delta { font-weight: 600; margin-left: 3px; }
+.delta.up { color: #0f8a5f; }
+.delta.down { color: #c0453b; }
+.delta.flat { color: #8a919c; font-weight: 400; }
+
+/* 热门页面水平条形图 */
+.hbar-list { padding: 8px 0 2px; }
+.hbar-row { display: flex; align-items: center; gap: 14px; padding: 7px 0; border-bottom: 1px solid #f2f4f7; }
+.hbar-row:last-child { border-bottom: 0; }
+.hbar-name { flex: 0 0 38%; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
+.hbar-name span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+.hbar-name small { color: #8a919c; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hbar-track { flex: 1 1 auto; height: 10px; background: #f0f3f7; border-radius: 6px; overflow: hidden; }
+.hbar-track i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b93dc, #2f6fd0); }
+.hbar-val { flex: 0 0 52px; text-align: right; font-weight: 600; font-size: 13px; font-variant-numeric: tabular-nums; }
+
+/* 明细折叠：把逐行数据收起来，让图表成为页面主体 */
+details.fold { margin: 12px 0; background: #fff; border: 1px solid #e3e6ea; border-radius: 10px; }
+details.fold > summary {
+  padding: 12px 16px; cursor: pointer; font-weight: 600; font-size: 13px;
+  list-style: none; user-select: none;
+}
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: '▸'; display: inline-block; margin-right: 8px; color: #8a919c; transition: transform .15s; }
+details.fold[open] > summary::before { transform: rotate(90deg); }
+details.fold > .panel, details.fold > .notice {
+  border: 0; border-top: 1px solid #eef0f3; border-radius: 0; margin: 0;
+}
+details.fold.inline-fold { background: transparent; border: 0; border-top: 1px solid #eef0f3; border-radius: 0; margin: 14px 0 0; }
+details.fold.inline-fold > summary { padding: 12px 0 4px; font-weight: 500; color: #185fa5; }
+table.compact td, table.compact th { padding: 6px 10px; }
+.footer-note { margin-top: 22px; font-size: 12px; }
+
+@media (max-width: 780px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .hbar-name { flex-basis: 50%; }
+  .panel { overflow-x: auto; }
+  .chart-line { min-width: 680px; }
+  .chart-bar { min-width: 420px; }
+}

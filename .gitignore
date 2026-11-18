@@ -1,0 +1,19 @@
+# ── 真实配置（含数据库密码 / 后台密码哈希 / 盐值），绝不提交 ──────────
+/app/config.php
+
+# ── 编辑器 / 系统临时文件 ────────────────────────────────────────
+Typora_Hook_Log.txt
+*.log
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ── 交付压缩包（大、且多为旧版本，代码以源码为准）───────────────────
+*.zip
+
+# ── ECharts：仅保留运行必需的 echarts.min.js，排除源映射与未压缩变体 ──
+/public/static/echarts/6.0.0/*
+!/public/static/echarts/6.0.0/echarts.min.js
+!/public/static/echarts/6.0.0/package.json
+/public/static/echarts/6.0.0/extension/
+
